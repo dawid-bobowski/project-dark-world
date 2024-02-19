@@ -4,8 +4,9 @@ import { gurajada } from "@/app/ui/fonts";
 import { signIn } from "next-auth/react";
 
 const LoginButton: React.FC = () => {
-  const handleSignIn = () => {
-    signIn("google");
+  
+  const handleSignIn = async () => {
+    await signIn("google", { callbackUrl: "/dashboard" });
   }
 
   return (
