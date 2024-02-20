@@ -1,13 +1,25 @@
 "use client";
 
 import { gurajada } from "@/app/ui/fonts";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const LoginButton: React.FC = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
   
   const handleSignIn = async () => {
-    await signIn("google", { callbackUrl: "/dashboard" });
+    await signIn("google");
   }
+
+  useEffect(() => {
+    if (session) {
+      router.push("/sign-a-pact");
+    } else {
+      router.push("/dashboard");
+    }
+  }, [router, session]);
 
   return (
     <button

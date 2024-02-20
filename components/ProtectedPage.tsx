@@ -11,10 +11,9 @@ const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(status)
     if (status === "loading") return;
     if (status === "unauthenticated") {
-      router.push("/error");
+      router.push("/login");
     }
   }, [status, router]);
 

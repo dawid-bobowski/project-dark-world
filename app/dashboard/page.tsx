@@ -12,20 +12,13 @@ const Page: React.FC = () => {
     return (
       <ProtectedPage>
         <div className="flex flex-col h-screen">
-          {/* Header */}
           <div className="flex justify-between align-center space-x-0 w-100 p-4 bg-blue-500 text-white p-4 text-lg font-semibold">
             <p>Dashboard</p>
             <LogoutButton />
           </div>
-
-          {/* Content */}
           <div className="flex-1 p-4">
-            {/* Content goes here */}
             <p>Welcome to your Dashboard, {session.user?.name}</p>
-            {/* Add more content as needed */}
           </div>
-
-          {/* Navigation Bar */}
           <div className="bg-gray-800 text-white flex justify-center gap-2 h-20 sticky bottom-0">
             <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-gray-950">
               <Image
@@ -61,6 +54,8 @@ const Page: React.FC = () => {
         </div>
       </ProtectedPage>
     )
+  } else {
+    return <div>no session</div>
   }
 };
 
