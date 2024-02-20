@@ -6,7 +6,7 @@ import { FireIcon } from "@heroicons/react/24/solid";
 const LogoutButton: React.FC = () => {
   
   const handleSignOut = async () => {
-    await signOut({ callbackUrl: "/error" });
+    await signOut({ callbackUrl: "/" });
   }
 
   return (
