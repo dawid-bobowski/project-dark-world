@@ -26,7 +26,7 @@ const Page: React.FC = () => {
           </div>
 
           {/* Navigation Bar */}
-          <div className="bg-gray-800 text-white flex justify-center gap-2 h-20">
+          <div className="bg-gray-800 text-white flex justify-center gap-2 h-20 sticky bottom-0">
             <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-gray-950">
               <Image
                 className="mix-blend-screen mb-1"
