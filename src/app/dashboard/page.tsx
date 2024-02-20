@@ -3,6 +3,7 @@
 import LogoutButton from "@/components/LogoutButton";
 import { useSession } from "next-auth/react";
 import ProtectedPage from "@/components/ProtectedPage";
+import Image from "next/image";
 
 const Page: React.FC = () => {
   const { data: session } = useSession();
@@ -18,17 +19,44 @@ const Page: React.FC = () => {
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-auto p-4">
+          <div className="flex-1 p-4">
             {/* Content goes here */}
             <p>Welcome to your Dashboard, {session.user?.name}</p>
             {/* Add more content as needed */}
           </div>
 
           {/* Navigation Bar */}
-          <div className="bg-gray-800 text-white p-4 flex justify-around">
-            <button>Home</button>
-            <button>Settings</button>
-            <button>Profile</button>
+          <div className="bg-gray-800 text-white flex justify-center gap-2 h-20">
+            <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-gray-950">
+              <Image
+                className="mix-blend-screen mb-1"
+                src="/character.png"
+                alt="Character menu icon"
+                width={36}
+                height={36}
+              />
+              <p>Character</p>
+            </button>
+            <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-gray-950">
+              <Image
+                  className="mix-blend-screen mb-1"
+                  src="/inventory.png"
+                  alt="Inventory menu icon"
+                  width={36}
+                  height={36}
+              />
+              <p>Inventory</p>
+            </button>
+            <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-gray-950">
+              <Image
+                className="mix-blend-screen mb-1"
+                src="/quests.png"
+                alt="Quests menu icon"
+                width={36}
+                height={36}
+              />
+              <p>Quests</p>
+            </button>
           </div>
         </div>
       </ProtectedPage>
