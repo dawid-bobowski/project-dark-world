@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { unifrakturCook, gurajada } from "@/app/ui/fonts";
+import { unifrakturCook, gurajada } from "@/ui/fonts";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ const Page: React.FC = () => {
     if (session?.user) {
       router.push("/dashboard");
     }
-  }, [router, session]);
+  }, [session, router]);
 
   return (
     <div className="login-page flex flex-col items-center justify-center min-h-screen w-screen">

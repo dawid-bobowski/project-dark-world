@@ -1,8 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import ProtectedPage from "@/components/ProtectedPage";
-import { unifrakturCook } from "../ui/fonts";
+import ProtectedPage from "@/ui/ProtectedPage";
+import { unifrakturCook } from "@/ui/fonts";
 
 export default function Home() {
   const { data: session } = useSession();

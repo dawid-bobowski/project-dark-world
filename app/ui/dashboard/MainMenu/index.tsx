@@ -1,6 +1,6 @@
 "use client";
 
-import { MENU_ITEMS } from "@/app/lib/constants";
+import { MENU_ITEMS } from "@/lib/constants";
 import MenuItem from "./MenuItem";
 
 const MainMenu: React.FC = () => {

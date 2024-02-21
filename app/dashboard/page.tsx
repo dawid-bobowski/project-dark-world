@@ -1,8 +1,8 @@
 "use client";
 
-import MainMenu from "@/components/MainMenu";
-import ProtectedPage from "@/components/ProtectedPage";
-import TopBar from "@/components/TopBar";
+import ProtectedPage from "@/ui/ProtectedPage";
+import TopBar from "@/ui/dashboard/TopBar";
+import MainMenu from "@/ui/dashboard/MainMenu";
 
 const Page: React.FC = () => {
   return (

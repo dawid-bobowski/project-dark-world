@@ -1,5 +1,6 @@
 "use client";
 
+import { UserProvider } from "@/contexts/UserContext";
 import { SessionProvider } from "next-auth/react";
 
 export default function Template({
@@ -8,8 +9,10 @@ export default function Template({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
-      {children}
-    </SessionProvider>
+    <UserProvider>
+      <SessionProvider>
+        {children}
+      </SessionProvider>
+    </UserProvider>
   );
 }

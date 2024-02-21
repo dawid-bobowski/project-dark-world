@@ -1,6 +1,6 @@
 "use client";
 
-import { MENU_ITEM_SIZE } from "@/app/lib/constants";
+import { MENU_ITEM_SIZE } from "@/lib/constants";
 import Image from "next/image";
 
 interface MenuItemProps {
@@ -12,7 +12,7 @@ interface MenuItemProps {
 const MenuItem: React.FC<MenuItemProps> = (props) => {
   const { src, alt, text } = props;
   return (
-    <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-[var(--blood-red)]">
+    <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-[var(--black)]">
       <Image
         className="mix-blend-screen mb-1"
         src={src}

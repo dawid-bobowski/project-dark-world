@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { unifrakturCook } from "../ui/fonts";
+import { unifrakturCook } from "@/ui/fonts";
 import Image from "next/image";
 
 const Page: React.FC = () => {
