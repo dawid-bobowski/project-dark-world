@@ -27,13 +27,14 @@ const Page: React.FC = () => {
         width={100}
         height={100}
         alt="Pentagram sign"
+        className="mix-blend-screen"
       />
       <div className="login-section px-8 py-6 mt-4 text-left">
         <h3 className={`${unifrakturCook.className} login-title text-3xl font-bold text-center`}>Begin your journey, if you&apos;re brave enough...</h3>
         <div className="flex flex-col items-center justify-center mt-4">
         <button
           onClick={handleSignIn}
-          className={`${gurajada.className} login-button px-4 py-2 mt-4 text-white text-xl rounded-lg hover:bg-red-950`}
+          className={`${gurajada.className} login-button px-4 py-2 mt-4 text-white text-2xl bg-[var(--black)] hover:bg-[var(--black-bean)]`}
         >
           Sign a Pact
         </button>
