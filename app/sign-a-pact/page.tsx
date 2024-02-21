@@ -1,7 +1,8 @@
 "use client";
 
-import ProtectedPage from "@/components/ProtectedPage";
 import { useSession } from "next-auth/react";
+import ProtectedPage from "@/components/ProtectedPage";
+import { unifrakturCook } from "../ui/fonts";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -9,8 +10,8 @@ export default function Home() {
   if (session) {
     return (
       <ProtectedPage>
-        <div className="flex min-h-screen flex-col items-center justify-center">
-          <h1>Welcome, {session.user?.name}, let&apos;s have a deal...</h1>
+        <div className="flex min-h-screen flex-col items-center justify-center p-6">
+          <h1 className={`${unifrakturCook.className} text-3xl text-center`}>Welcome, {session.user?.name},<br />let&apos;s have a deal...</h1>
         </div>
       </ProtectedPage>
     );

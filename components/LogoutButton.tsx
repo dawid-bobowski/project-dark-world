@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react";
 import { FireIcon } from "@heroicons/react/24/solid";
 
 const LogoutButton: React.FC = () => {
-  
+
   const handleSignOut = async () => {
     await signOut({ callbackUrl: "/" });
   }

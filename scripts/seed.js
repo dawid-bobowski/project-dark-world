@@ -11,7 +11,8 @@ async function seedUsers(client) {
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL
+        password TEXT NOT NULL,
+        active BOOLEAN NOT NULL DEFAULT TRUE
       );
     `;
 
@@ -41,10 +42,40 @@ async function seedUsers(client) {
   }
 }
 
+async function seedCharacters(client) {
+  try {
+    // Create the "characters" table if it doesn't exist
+    const createTable = await client.sql`
+      CREATE TABLE IF NOT EXISTS characters (
+        id SERIAL PRIMARY KEY,
+        user_id UUID NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        class VARCHAR(255) NOT NULL,
+        level SMALLINT NOT NULL DEFAULT 1,
+        experience BIGINT NOT NULL DEFAULT 0,
+        CONSTRAINT fk_user
+          FOREIGN KEY(user_id)
+          REFERENCES users(id)
+          ON DELETE SET NULL
+      );
+    `;
+
+    console.log(`Created "characters" table`);
+
+    return {
+      createTable,
+    };
+  } catch (error) {
+    console.error("Error seeding characters:", error);
+    throw error;
+  }
+}
+
 async function main() {
   const client = await db.connect();
 
   await seedUsers(client);
+  await seedCharacters(client);
 
   await client.end();
 }

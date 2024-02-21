@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Loading from "./Loading";
 
 interface ProtectedPageProps {
   children: React.ReactNode;
@@ -18,11 +19,11 @@ const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
   }, [status, router]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
-    <>{session ? children : null}</>
+    <>{session ? children : <Loading />}</>
   );
 };
 

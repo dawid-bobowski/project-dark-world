@@ -12,29 +12,36 @@ const handler = NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    async signIn({ user }) {
-      const { name, email } = user;
-      if (name && email) {
-        try {
-          const newUuid = uuidv4();
-          const hashedPassword = await bcrypt.hash("123", 10);
-          const newUser = {
-            id: newUuid,
-            name,
-            email,
-            password: hashedPassword,
-          };
-          await findOrCreateUser(newUser);
-          return true;
-        } catch (error) {
-          console.error(error);
-          return false;
-        }
-      }
-      return false;
-    },
+  session: {
+    strategy: "jwt",
   },
+  // callbacks: {
+  //   async signIn({ user }) {
+  //     const { name, email } = user;
+  //     if (name && email) {
+  //       try {
+  //         const newUuid = uuidv4();
+  //         const hashedPassword = await bcrypt.hash("123", 10);
+  //         const newUser = {
+  //           id: newUuid,
+  //           name,
+  //           email,
+  //           password: hashedPassword,
+  //         };
+  //         const user = await findOrCreateUser(newUser);
+  //         if (user) {
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       } catch (error) {
+  //         console.error(error);
+  //         return false;
+  //       }
+  //     }
+  //     return false;
+  //   },
+  // },
 });
 
 export { handler as GET, handler as POST };

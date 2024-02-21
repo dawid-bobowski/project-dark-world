@@ -1,6 +1,5 @@
 "use client";
 
-import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
 import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
 
