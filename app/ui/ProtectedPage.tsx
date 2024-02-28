@@ -1,6 +1,7 @@
+"use client";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import Loading from "@/ui/Loading";
 
 interface ProtectedPageProps {
@@ -8,23 +9,19 @@ interface ProtectedPageProps {
 }
 
 const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
-  const { data: session, status } = useSession();
   const router = useRouter();
-
-  useEffect(() => {
-    if (status === "loading") return;
-    if (status === "unauthenticated") {
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
       router.push("/login");
-    }
-  }, [status, router]);
+    },
+  });
 
   if (status === "loading") {
     return <Loading />;
   }
 
-  return (
-    <>{session ? children : <Loading />}</>
-  );
+  return <>{session ? children : <Loading />}</>;
 };
 
 export default ProtectedPage;

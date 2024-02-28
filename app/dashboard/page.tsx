@@ -1,11 +1,16 @@
 "use client";
 
+import { useSession } from "next-auth/react";
+
 import ProtectedPage from "@/ui/ProtectedPage";
-import TopBar from "@/ui/dashboard/TopBar";
+import Loading from "@/ui/Loading";
 import MainMenu from "@/ui/dashboard/MainMenu";
+import TopBar from "@/ui/dashboard/TopBar";
 
 const Page: React.FC = () => {
-  return (
+  const { data: session } = useSession();
+
+  return session ? (
     <ProtectedPage>
       <div className="flex flex-col h-screen">
         <TopBar />
@@ -15,7 +20,9 @@ const Page: React.FC = () => {
         <MainMenu />
       </div>
     </ProtectedPage>
-  )
+  ) : (
+    <Loading />
+  );
 };
 
 export default Page;

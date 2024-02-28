@@ -1,7 +1,7 @@
 "use client";
 
-import { MENU_ITEM_SIZE } from "@/lib/constants";
 import Image from "next/image";
+import { MENU_ITEM_SIZE } from "@/lib/constants";
 
 interface MenuItemProps {
   src: string;
@@ -23,6 +23,6 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
       <p>{text}</p>
     </button>
   );
-}
+};
 
 export default MenuItem;

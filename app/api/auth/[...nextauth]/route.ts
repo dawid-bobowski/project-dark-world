@@ -1,8 +1,9 @@
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth/next";
-import { findOrCreateUser } from "@/app/lib/data";
+import { PrismaClient } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
-import bcrypt from "bcrypt";
+
+const prisma = new PrismaClient();
 
 const handler = NextAuth({
   providers: [
@@ -15,33 +16,33 @@ const handler = NextAuth({
   session: {
     strategy: "jwt",
   },
-  // callbacks: {
-  //   async signIn({ user }) {
-  //     const { name, email } = user;
-  //     if (name && email) {
-  //       try {
-  //         const newUuid = uuidv4();
-  //         const hashedPassword = await bcrypt.hash("123", 10);
-  //         const newUser = {
-  //           id: newUuid,
-  //           name,
-  //           email,
-  //           password: hashedPassword,
-  //         };
-  //         const user = await findOrCreateUser(newUser);
-  //         if (user) {
-  //           return true;
-  //         } else {
-  //           return false;
-  //         }
-  //       } catch (error) {
-  //         console.error(error);
-  //         return false;
-  //       }
-  //     }
-  //     return false;
-  //   },
-  // },
+  callbacks: {
+    async signIn({ user }) {
+      const { name, email } = user;
+      if (name && email) {
+        try {
+          let dbUser = await prisma.user.findUnique({
+            where: { email },
+          });
+
+          if (!dbUser) {
+            dbUser = await prisma.user.create({
+              data: {
+                name,
+                email,
+                id: uuidv4(),
+              },
+            });
+          }
+          return true;
+        } catch (error) {
+          console.error(error);
+          return false;
+        }
+      }
+      return false;
+    },
+  },
 });
 
 export { handler as GET, handler as POST };

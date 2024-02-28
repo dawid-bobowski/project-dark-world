@@ -10,9 +10,7 @@ export default function Template({
 }>) {
   return (
     <UserProvider>
-      <SessionProvider>
-        {children}
-      </SessionProvider>
+      <SessionProvider>{children}</SessionProvider>
     </UserProvider>
   );
 }

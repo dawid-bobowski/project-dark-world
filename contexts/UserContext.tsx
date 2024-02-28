@@ -7,7 +7,7 @@ interface UserContextType {
   logout: () => void;
 }
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType | undefined>(undefined);
 
 interface UserProviderProps {
   children: ReactNode;
@@ -19,9 +19,5 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const login = (userData: User) => setUser(userData);
   const logout = () => setUser(null);
 
-  return (
-    <UserContext.Provider value={{ user, login, logout }}>
-      {children}
-    </UserContext.Provider>
-  );
-}
+  return <UserContext.Provider value={{ user, login, logout }}>{children}</UserContext.Provider>;
+};
