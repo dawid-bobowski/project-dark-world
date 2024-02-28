@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --raisin-black: #30262aff;
-  --black-bean: #2c0208ff;
+  --raisin-light: #dfd9db;
+  --raisin-black: #30262a;
+  --raisin-black-darker: #161113;
+  --black-bean: #2c0208;
   --black-bean-lighter: #61383e;
-  --pale-dogwood: #dcbaacff;
-  --black: #060203ff;
-  --blood-red: #670100ff;
+  --pale-dogwood: #dcbaac;
+  --black: #060203;
+  --blood-red: #670100;
   --foreground-rgb: #fff;
   --background-start-rgb: var(--black-bean);
   --background-end-rgb: var(--black);

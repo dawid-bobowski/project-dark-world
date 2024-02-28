@@ -1,7 +1,9 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+
 import ProtectedPage from "@/ui/ProtectedPage";
+import CharacterForm from "@/ui/sign-a-pact/CharacterForm";
 import { unifrakturCook } from "@/ui/fonts";
 
 export default function Home() {
@@ -14,6 +16,9 @@ export default function Home() {
           Welcome, {session?.user?.name},<br />
           let&apos;s have a deal...
         </h1>
+        <div className="mt-8 w-50">
+          <CharacterForm />
+        </div>
       </div>
     </ProtectedPage>
   );

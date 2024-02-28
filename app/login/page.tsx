@@ -59,7 +59,7 @@ const LoginPage: React.FC = () => {
         <div className="flex flex-col items-center justify-center mt-4">
           <button
             onClick={handleSignIn}
-            className={`${gurajada.className} login-button px-4 py-2 mt-4 bg-white text-2xl text-[var(--black)] hover:bg-[var(--pale-dogwood)] hover:text-[var(--raisin-black)]`}
+            className={`${gurajada.className} login-button px-4 py-2 mt-4 bg-white text-2xl text-[var(--black)] hover:bg-[var(--raisin-light)]`}
           >
             Step into the Dark World
           </button>
