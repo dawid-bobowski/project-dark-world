@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import Loading from "@/ui/Loading";
 
 interface ProtectedPageProps {
@@ -10,16 +11,13 @@ interface ProtectedPageProps {
 
 const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
   const router = useRouter();
-  const { data: session, status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/login");
-    },
-  });
+  const { data: session } = useSession();
 
-  if (status === "loading") {
-    return <Loading />;
-  }
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session]);
 
   return <>{session ? children : <Loading />}</>;
 };
