@@ -10,7 +10,7 @@ export type Character = {
   name: string;
   class: string;
   level: number;
-  experience: bigint;
+  experience: number;
 };
 
 export type ResponseData = { message: string } | User | Character;
