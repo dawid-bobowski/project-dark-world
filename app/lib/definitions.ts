@@ -2,15 +2,15 @@ export type User = {
   id: string;
   name: string;
   email: string;
+  characters: Character[];
 };
-export type Users = User[];
 
 export type Character = {
-  id: string;
+  id: number;
   name: string;
   class: string;
   level: number;
+  experience: bigint;
 };
-export type Characters = Character[];
 
-export type ResponseData = { message: string } | User;
+export type ResponseData = { message: string } | User | Character;

@@ -1,50 +1,45 @@
 "use client";
 
-import { unstable_noStore as noStore } from "next/cache";
 import { signIn, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import Loading from "@/ui/Loading";
 import { unifrakturCook, gurajada } from "@/ui/fonts";
-import { User } from "@/lib/definitions";
 import { useUser } from "@/hooks/useUser";
+import { useCharacter } from "@/hooks/useCharacter";
 
 const LoginPage: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
   const { data: session, status } = useSession();
   const router = useRouter();
-  const { login } = useUser();
+  const { user, login } = useUser();
+  const { updateCharacter } = useCharacter();
 
   useEffect(() => {
     const getUser = async (email: string) => {
-      noStore();
-
       const response = await fetch(`/api/user/${encodeURIComponent(email)}`);
 
       if (response.ok) {
         const userData = await response.json();
-        setUser(userData);
         login(userData);
+      } else {
+        alert("Something went wrong in getUser");
       }
     };
 
-    if (session && session.user && !user) {
+    if (session && session.user) {
       getUser(session.user.email as string);
     }
+  }, [session]);
 
-    if (session && user) {
+  useEffect(() => {
+    if (session && user && user.characters.length > 0) {
+      updateCharacter(user.characters[0]);
       router.push("/dashboard");
-    }
-
-    if (session && !user) {
+    } else if (session && user && user.characters.length === 0) {
       router.push("/sign-a-pact");
     }
-  }, [login, router, session, user]);
-
-  const handleSignIn = async () => {
-    await signIn("google");
-  };
+  }, [user]);
 
   if (status === "loading") {
     return <Loading />;
@@ -58,7 +53,7 @@ const LoginPage: React.FC = () => {
         </h3>
         <div className="flex flex-col items-center justify-center mt-4">
           <button
-            onClick={handleSignIn}
+            onClick={() => signIn("google")}
             className={`${gurajada.className} login-button px-4 py-2 mt-4 bg-white text-2xl text-[var(--black)] hover:bg-[var(--raisin-light)]`}
           >
             Step into the Dark World

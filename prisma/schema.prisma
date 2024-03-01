@@ -3,28 +3,31 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model User {
-  id            String      @id @default(uuid())
-  name          String      @unique
-  email         String      @unique
-  createdAt     DateTime    @default(now()) @map(name: "created_at")
-  updatedAt     DateTime    @updatedAt @map(name: "updated_at")
-  characters    Character[]
+  id         String      @id @default(uuid())
+  name       String      @unique
+  email      String      @unique
+  createdAt  DateTime    @default(now()) @map(name: "created_at")
+  updatedAt  DateTime    @updatedAt @map(name: "updated_at")
+  characters Character[]
+
   @@map(name: "users")
 }
 
 model Character {
-  id            Int       @id @default(autoincrement())
-  userId        String     
-  user          User      @relation(fields: [userId], references: [id])
-  name          String
-  class         String
-  level         Int       @default(1)
-  experience    BigInt    @default(0)
+  id         Int    @id @default(autoincrement())
+  userId     String @map(name: "user_id")
+  name       String @unique
+  class      String
+  level      Int    @default(1)
+  experience Int    @default(0)
+  user       User   @relation(fields: [userId], references: [id])
+
+  @@index([userId], map: "User_user_id_fkey")
   @@map(name: "characters")
 }

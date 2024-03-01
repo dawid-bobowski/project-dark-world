@@ -6,16 +6,18 @@ import ProtectedPage from "@/ui/ProtectedPage";
 import Loading from "@/ui/Loading";
 import MainMenu from "@/ui/dashboard/MainMenu";
 import TopBar from "@/ui/dashboard/TopBar";
+import { useCharacter } from "@/hooks/useCharacter";
 
-const Page: React.FC = () => {
+const DashboardPage: React.FC = () => {
   const { data: session } = useSession();
+  const { character } = useCharacter();
 
-  return session ? (
+  return session && character ? (
     <ProtectedPage>
       <div className="flex flex-col h-screen">
         <TopBar />
         <div className="flex-1 p-4">
-          <p>Welcome to your Dashboard!</p>
+          <p>Welcome, {character.name}!</p>
         </div>
         <MainMenu />
       </div>
@@ -25,4 +27,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default DashboardPage;
