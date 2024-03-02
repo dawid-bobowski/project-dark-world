@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Dark World
 
-## Getting Started
+### Known Issues
 
-First, run the development server:
+- all Google accounts are able to sign up even though there are only a few restricted in the Google OAuth 2.0;
+- contexts seem to not work properly, some pages aren't able to access CharacterContext:
+  - **TO DO**: investigate usage of Context API with Next.js.
 
-```bash
+### Development
+
+Run the development server:
+
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prisma
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Generate Prisma Client from schema file:
 
-## Learn More
+```
+npx prisma generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+Update the database schema based on schema file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npx prisma db push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Format schema file:
 
-## Deploy on Vercel
+```
+npx prisma format
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Seed database with initial data (currently there's no script to seed the database):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+npx prisma db seed
+```
