@@ -1,11 +1,15 @@
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth/next";
-import { PrismaClient } from "@prisma/client";
-import { v4 as uuidv4 } from "uuid";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { createId } from "@paralleldrive/cuid2";
 
-const prisma = new PrismaClient();
+import prisma from "@/lib/database";
 
 const handler = NextAuth({
+  adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: "/login",
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -30,7 +34,7 @@ const handler = NextAuth({
               data: {
                 name,
                 email,
-                id: uuidv4(),
+                id: createId(),
               },
             });
           }
