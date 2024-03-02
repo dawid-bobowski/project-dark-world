@@ -1,4 +1,4 @@
-import { Character } from "@/app/lib/definitions";
+import { Character } from "@/lib/definitions";
 import { ReactNode, createContext, useState } from "react";
 
 interface CharacterContextType {

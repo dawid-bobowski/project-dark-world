@@ -1,4 +1,4 @@
-import { User } from "@/app/lib/definitions";
+import { User } from "@/lib/definitions";
 import { ReactNode, createContext, useState } from "react";
 
 interface UserContextType {

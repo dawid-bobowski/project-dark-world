@@ -1,4 +1,4 @@
-import { Character, ResponseData } from "@/app/lib/definitions";
+import { Character, ResponseData } from "@/lib/definitions";
 import { PrismaClient } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { NextApiRequest, NextApiResponse } from "next";

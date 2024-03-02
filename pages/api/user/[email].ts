@@ -1,4 +1,4 @@
-import { ResponseData, User } from "@/app/lib/definitions";
+import { ResponseData, User } from "@/lib/definitions";
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
