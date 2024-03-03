@@ -23,7 +23,8 @@
       "@/lib/*": ["./lib/*"],
       "@/api/*": ["./app/api/*"],
       "@/hooks/*": ["./hooks/*"],
-      "@/contexts/*": ["./contexts/*"]
+      "@/contexts/*": ["./contexts/*"],
+      "@/styles/*": ["./styles/*"]
     }
   },
   "include": ["global.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

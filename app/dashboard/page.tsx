@@ -1,29 +1,45 @@
-"use client";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-import { useSession } from "next-auth/react";
+import { getSessionUser } from "@/lib/session";
+import { authOptions } from "@/lib/auth";
+import { database } from "@/lib/database";
+import TopBar from "@/components/dashboard/TopBar";
+import MainMenu from "@/components/dashboard/MainMenu";
 
-import ProtectedPage from "@/ui/ProtectedPage";
-import Loading from "@/ui/Loading";
-import MainMenu from "@/ui/dashboard/MainMenu";
-import TopBar from "@/ui/dashboard/TopBar";
-import { useCharacter } from "@/hooks/useCharacter";
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "The nightmare unfolds!",
+};
 
-const DashboardPage: React.FC = () => {
-  const { data: session } = useSession();
-  const { character } = useCharacter();
+const DashboardPage: React.FC = async () => {
+  const sessionUser = await getSessionUser();
 
-  return session && character ? (
-    <ProtectedPage>
-      <div className="flex flex-col h-screen">
-        <TopBar />
-        <div className="flex-1 p-4">
-          <p>Welcome, {character.name}!</p>
-        </div>
-        <MainMenu />
+  if (!sessionUser?.email) {
+    redirect(authOptions?.pages?.signIn || "/login");
+  }
+
+  const user = await database.user.findUnique({
+    where: {
+      email: sessionUser.email,
+    },
+    select: {
+      characters: true,
+    },
+  });
+
+  if (user?.characters.length === 0) {
+    redirect("/sign-a-pact");
+  }
+
+  return (
+    <div className="flex flex-col h-screen">
+      <TopBar />
+      <div className="flex-1 p-4">
+        <p>Welcome, {sessionUser.name}!</p>
       </div>
-    </ProtectedPage>
-  ) : (
-    <Loading />
+      <MainMenu />
+    </div>
   );
 };
 

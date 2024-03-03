@@ -12,5 +12,3 @@ export type Character = {
   level: number;
   experience: number;
 };
-
-export type ResponseData = { message: string } | User | Character;
