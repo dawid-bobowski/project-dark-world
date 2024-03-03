@@ -1,10 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { unifrakturCook } from "@/ui/fonts";
 
-const Page: React.FC = () => {
+import { useRouter } from "next/navigation";
+import { unifrakturCook } from "@/lib/fonts";
+
+const ErrorPage: React.FC = () => {
   const router = useRouter();
 
   const handleRedirect = () => {
@@ -30,4 +31,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default ErrorPage;
