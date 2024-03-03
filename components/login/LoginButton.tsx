@@ -13,9 +13,9 @@ const LoginButton: React.FC = () => {
   return (
     <button
       onClick={handleSignIn}
-      className={`${gurajada.className} flex flex-col px-4 py-2 mt-4 bg-white text-2xl text-[var(--black)] hover:bg-[var(--raisin-light)]`}
+      className={`${gurajada.className} flex flex-col px-4 py-2 mt-8 bg-[var(--black)] text-2xl text-[var(--pale-dogwood)] border-[var(--pale-dogwood)] border-solid border-2 rounded hover:bg-[var(--raisin-black-darker)]`}
     >
-      Step into the Dark World
+      Sign a Pact
     </button>
   );
 };
