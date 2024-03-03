@@ -2,9 +2,18 @@
 
 ### Known Issues
 
-- all Google accounts are able to sign up even though there are only a few restricted in the Google OAuth 2.0;
-- contexts seem to not work properly, some pages aren't able to access CharacterContext:
-  - **TO DO**: investigate usage of Context API with Next.js.
+- none
+
+If you find any, feel free to open a new issue.
+
+### Initial Project Setup
+
+```
+npm i
+npm i -g vercel
+vercelnpx prisma generate
+npx prisma generate
+```
 
 ### Development
 
