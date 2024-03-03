@@ -21,7 +21,7 @@ const DashboardPage: React.FC = async () => {
 
   const user = await database.user.findUnique({
     where: {
-      email: sessionUser.email,
+      email: sessionUser?.email,
     },
     select: {
       characters: true,
@@ -34,10 +34,8 @@ const DashboardPage: React.FC = async () => {
 
   return (
     <div className="flex flex-col h-screen">
-      <TopBar />
-      <div className="flex-1 p-4">
-        <p>Welcome, {sessionUser.name}!</p>
-      </div>
+      <TopBar character={user.characters[0]} />
+      <div className="flex-1 p-4">{/* main content here */}</div>
       <MainMenu />
     </div>
   );
