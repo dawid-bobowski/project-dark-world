@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { gurajada } from "@/lib/fonts";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type CharacterFormProps = {
   userId: string;
@@ -10,6 +10,7 @@ type CharacterFormProps = {
 
 const CharacterForm: React.FC<CharacterFormProps> = ({ userId }) => {
   const [characterName, setCharacterName] = useState<string>("");
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -27,9 +28,9 @@ const CharacterForm: React.FC<CharacterFormProps> = ({ userId }) => {
     });
 
     if (response.ok) {
-      redirect("/dashboard");
+      router.push("/dashboard");
     } else {
-      redirect("/login");
+      router.push("/login");
     }
   };
 

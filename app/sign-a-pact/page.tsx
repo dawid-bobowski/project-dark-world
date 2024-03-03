@@ -5,11 +5,12 @@ import { authOptions } from "@/lib/auth";
 import { database } from "@/lib/database";
 import { unifrakturCook } from "@/lib/fonts";
 import CharacterForm from "@/components/sign-a-pact/CharacterForm";
+import Loading from "@/components/common/Loading";
 
 const SignPactPage: React.FC = async () => {
   const sessionUser = await getSessionUser();
 
-  if (!sessionUser?.email) {
+  if (!sessionUser || !sessionUser.email) {
     redirect(authOptions?.pages?.signIn || "/login");
   }
 
@@ -27,7 +28,7 @@ const SignPactPage: React.FC = async () => {
     redirect(authOptions?.pages?.signIn || "/login");
   }
 
-  return (
+  return user ? (
     <div className="flex min-h-screen flex-col items-center justify-center p-6">
       <h1 className={`${unifrakturCook.className} text-3xl text-center`}>
         Welcome, {sessionUser.name},<br />
@@ -37,6 +38,8 @@ const SignPactPage: React.FC = async () => {
         <CharacterForm userId={user.id} />
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 };
 

@@ -25,7 +25,7 @@ model Character {
   name       String @unique
   class      String
   level      Int    @default(1)
-  experience Int    @default(0)
+  experience Int    @default(1)
   user       User   @relation(fields: [userId], references: [id])
 
   @@index([userId], map: "User_user_id_fkey")
