@@ -1,10 +1,26 @@
 # Project Dark World
 
-### Known Issues
+## Known Issues
 
 - none
 
 If you find any, feel free to open a new issue.
+
+## Next Steps
+
+- character page;
+- stats;
+- equipment;
+- inventory;
+- create different game modes:
+  - expeditions, timed missions that give rewards after a period of time;
+  - dungeons, gather a party of 4 heroes and venture into the dungeon to face its threats together in an automatically simulated fights with monsters;
+  - raids, together with 15 other players join your forces and slay a giant demon for some big rewards;
+  - weekly events, come up with some weekly events;
+- progression system;
+- guilds;
+- rankings;
+- achievements;
 
 ### Initial Project Setup
 
