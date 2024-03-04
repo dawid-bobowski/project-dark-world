@@ -16,4 +16,14 @@ export const MENU_ITEMS = [
     alt: "Quests menu icon",
     text: "Quests",
   },
+  {
+    src: "/adventures.png",
+    alt: "Adventures menu icon",
+    text: "Adventures",
+  },
+  {
+    src: "/rankings.png",
+    alt: "Rankings menu icon",
+    text: "Rankings",
+  },
 ];
