@@ -24,7 +24,7 @@ const ErrorPage: React.FC = () => {
       />
       <div className="login-section px-8 py-6 mt-4 text-left">
         <h3 className={`${unifrakturCook.className} login-title text-3xl font-bold text-center`}>
-          You died.
+          Your page died. Click above to resurrect it!
         </h3>
       </div>
     </div>

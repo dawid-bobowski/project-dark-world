@@ -1,46 +1,23 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
-
-import { getSessionUser } from "@/lib/session";
-import { authOptions } from "@/lib/auth";
-import { database } from "@/lib/database";
-import TopBar from "@/components/dashboard/TopBar";
-import MainMenu from "@/components/dashboard/MainMenu";
-import Loading from "@/components/common/Loading";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "The nightmare unfolds!",
 };
 
-const DashboardPage: React.FC = async () => {
-  const sessionUser = await getSessionUser();
+const DashboardPage: React.FC = () => {
+  const items = Array.from({ length: 6 }, (_, i) => `Item ${i + 1}`);
 
-  if (!sessionUser || !sessionUser.email) {
-    redirect(authOptions?.pages?.signIn || "/login");
-  }
-
-  const user = await database.user.findUnique({
-    where: {
-      email: sessionUser.email,
-    },
-    select: {
-      characters: true,
-    },
-  });
-
-  if (user && user.characters.length === 0) {
-    redirect("/sign-a-pact");
-  }
-
-  return user ? (
-    <div className="flex flex-col h-screen">
-      <TopBar character={user.characters[0]} />
-      <div className="flex-1 p-4">{/* main content here */}</div>
-      <MainMenu />
+  return (
+    <div className="w-full h-full p-4 grid grid-cols-2 gap-4">
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className="w-full h-full bg-black flex justify-center items-center shadow-md rounded-lg"
+        >
+          {item}
+        </div>
+      ))}
     </div>
-  ) : (
-    <Loading />
   );
 };
 
