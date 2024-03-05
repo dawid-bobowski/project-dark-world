@@ -1,13 +1,21 @@
+import { EXPEDITIONS } from "@/lib/constants";
+
 const ExpeditionsPage: React.FC = () => {
-  const items = Array.from({ length: 6 }, (_, i) => `Item ${i + 1}`);
   return (
-    <div className="w-full h-full p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-      {items.map((item, index) => (
+    <div className="w-full p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {EXPEDITIONS.map(({ title, description, time }) => (
         <div
-          key={index}
-          className="w-full h-full bg-black flex justify-center items-center shadow-md rounded-lg md:cursor-pointer"
+          key={title}
+          className="w-full h-40 p-4 bg-black flex flex-col justify-between shadow-md rounded-lg"
         >
-          {item}
+          <div className="w-full flex justify-between">
+            <p>{title}</p>
+            <p>time: {time / 60}h</p>
+          </div>
+          <div className="w-full flex">{description}</div>
+          <button className="py-1 px-4 self-end text-black bg-white rounded sm:hover:bg-gray-300">
+            Begin
+          </button>
         </div>
       ))}
     </div>

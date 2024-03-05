@@ -38,7 +38,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   return (
     <div className="flex flex-col h-screen">
       <TopBar character={user.characters[0]} />
-      <div className="flex-1 p-4">{children}</div>
+      <div className="flex-1 p-4 overflow-y-scroll">{children}</div>
       <MainMenu />
     </div>
   );

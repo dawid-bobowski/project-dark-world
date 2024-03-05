@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
         className={`${unifrakturCook.className} flex justify-center align-center text-3xl`}
       >
         <p className="text-center text-[var(--pale-dogwood)]">
-          Do you dare to step <br />
+          Would you dare to step <br />
           into the Dark World?
         </p>
       </Link>

@@ -28,10 +28,29 @@ body {
   color: var(--foreground-rgb);
   background: linear-gradient(to bottom, transparent, var(--background-end-rgb))
     var(--background-start-rgb);
+  background-attachment: fixed;
+  overflow: hidden;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--black-bean);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blood-red);
 }
