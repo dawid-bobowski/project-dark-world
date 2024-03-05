@@ -12,7 +12,7 @@ interface MenuItemProps {
 const MenuItem: React.FC<MenuItemProps> = (props) => {
   const { src, alt, text } = props;
   return (
-    <button className="flex flex-col justify-center items-center p-2 text-xs hover:bg-[var(--black)]">
+    <button className="flex flex-col justify-center items-center p-2 text-xs sm:hover:bg-[var(--black)]">
       <Image
         className="mix-blend-screen mb-1"
         src={src}
