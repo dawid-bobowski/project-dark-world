@@ -22,12 +22,14 @@ If you find any, feel free to open a new issue.
 - rankings;
 - achievements;
 
+To implement dungeons and raids, the app would require a separate server that would handle web sockets. This way client would be able to connect to it and receive real-time updates.
+
 ### Initial Project Setup
 
 ```
 npm i
 npm i -g vercel
-vercelnpx prisma generate
+vercel
 npx prisma generate
 ```
 
