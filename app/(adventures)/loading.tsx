@@ -1,4 +1,4 @@
-import Loading from "@/components/common/Loading";
+import Loading from "@/app/components/Loading";
 
 const LoginLoading: React.FC = () => {
   return <Loading />;

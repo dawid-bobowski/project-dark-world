@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import { unifrakturCook } from "@/lib/fonts";
-import Loading from "@/components/common/Loading";
+import Loading from "@/app/components/Loading";
 
 const HomePage: React.FC = () => {
   useEffect(() => {

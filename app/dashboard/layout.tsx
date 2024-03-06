@@ -4,8 +4,8 @@ import { getSessionUser } from "@/lib/session";
 import { authOptions } from "@/lib/auth";
 import { database } from "@/lib/database";
 import ErrorPage from "@/app/error/page";
-import TopBar from "@/components/dashboard/TopBar";
-import MainMenu from "@/components/dashboard/MainMenu";
+import TopBar from "./components/TopBar";
+import MainMenu from "./components/MainMenu";
 
 type DashboardLayoutProps = {
   children?: React.ReactNode;

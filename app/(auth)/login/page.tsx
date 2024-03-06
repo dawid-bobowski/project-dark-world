@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { unifrakturCook } from "@/lib/fonts";
-import LoginButton from "@/components/login/LoginButton";
+import LoginButton from "./components/LoginButton";
 
 export const metadata: Metadata = {
   title: "Login",

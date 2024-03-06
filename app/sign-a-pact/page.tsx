@@ -4,8 +4,8 @@ import { getSessionUser } from "@/lib/session";
 import { authOptions } from "@/lib/auth";
 import { database } from "@/lib/database";
 import { unifrakturCook } from "@/lib/fonts";
-import CharacterForm from "@/components/sign-a-pact/CharacterForm";
-import Loading from "@/components/common/Loading";
+import CharacterForm from "./components/CharacterForm";
+import Loading from "@/app/components/Loading";
 
 const SignPactPage: React.FC = async () => {
   const sessionUser = await getSessionUser();
