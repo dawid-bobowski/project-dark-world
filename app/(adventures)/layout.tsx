@@ -7,11 +7,11 @@ import ErrorPage from "@/app/error/page";
 import TopBar from "@/app/dashboard/components/TopBar";
 import MainMenu from "@/app/dashboard/components/MainMenu";
 
-type DashboardLayoutProps = {
+type AdventuresLayoutProps = {
   children?: React.ReactNode;
 };
 
-const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
+const AdventuresLayout = async ({ children }: AdventuresLayoutProps) => {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser || !sessionUser.email) {
@@ -44,4 +44,4 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   );
 };
 
-export default DashboardLayout;
+export default AdventuresLayout;
