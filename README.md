@@ -1,10 +1,17 @@
 # Project Dark World
 
-## Known Issues
+In 2024, it might seem like the era of web-based RPG clicker games has passed, but I'm looking for a unique and engaging way to learn Next.js beyond the typical shopping list or single-page application (SPA) portfolio projects. To make the learning process more exciting and innovative, I plan to leverage all the latest functionalities of this React framework to develop a dark fantasy RPG web "app game".
 
-- none
+## Tech Stack
 
-If you find any, feel free to open a new issue.
+- Next 14.1
+- TypeScript 5
+- React 18
+- TailwindCSS 3.3
+- NextAuth 4.24
+- prisma/client 5
+- vercel/postgres 0.7.2
+- Node 20.11
 
 ## Next Steps
 
@@ -68,3 +75,9 @@ Seed database with initial data (currently there's no script to seed the databas
 ```
 npx prisma db seed
 ```
+
+## Known Issues
+
+- none
+
+If you find any, feel free to open a new issue.
