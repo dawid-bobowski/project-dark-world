@@ -31,6 +31,12 @@ In 2024, it might seem like the era of web-based RPG clicker games has passed, b
 
 To implement dungeons and raids, the app would require a separate server that would handle web sockets. This way client would be able to connect to it and receive real-time updates.
 
+## Current Focus
+
+Expeditions:
+— add field to character table to include expedition start time;
+— create expeditions table with proper details about each expedition: name, description, time to complete, rewards (exp, gold, eq?).
+
 ### Initial Project Setup
 
 ```

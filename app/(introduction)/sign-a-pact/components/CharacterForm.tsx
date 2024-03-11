@@ -15,7 +15,7 @@ const CharacterForm: React.FC<CharacterFormProps> = ({ userId }) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch("/api/character", {
+    const response = await fetch("/api/characters", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

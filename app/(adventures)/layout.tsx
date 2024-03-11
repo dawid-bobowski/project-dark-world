@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { LayoutProps } from "@/lib/definitions";
 import { getSessionUser } from "@/lib/session";
 import { authOptions } from "@/lib/auth";
 import { database } from "@/lib/database";
@@ -7,11 +8,7 @@ import ErrorPage from "@/app/error/page";
 import TopBar from "@/app/dashboard/components/TopBar";
 import MainMenu from "@/app/dashboard/components/MainMenu";
 
-type AdventuresLayoutProps = {
-  children?: React.ReactNode;
-};
-
-const AdventuresLayout = async ({ children }: AdventuresLayoutProps) => {
+const AdventuresLayout = async ({ children }: LayoutProps) => {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser || !sessionUser.email) {

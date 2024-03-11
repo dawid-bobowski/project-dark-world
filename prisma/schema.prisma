@@ -20,14 +20,25 @@ model User {
 }
 
 model Character {
-  id         Int    @id @default(autoincrement())
-  userId     String @map(name: "user_id")
-  name       String @unique
-  class      String
-  level      Int    @default(1)
-  experience Int    @default(1)
-  user       User   @relation(fields: [userId], references: [id])
+  id               Int       @id @default(autoincrement())
+  userId           String    @map(name: "user_id")
+  name             String    @unique
+  class            String
+  level            Int       @default(1)
+  experience       Int       @default(1)
+  activeExpedition Int?      @map(name: "active_expedition")
+  expeditionStart  DateTime? @map(name: "expedition_start")
+  user             User      @relation(fields: [userId], references: [id])
 
   @@index([userId], map: "User_user_id_fkey")
   @@map(name: "characters")
+}
+
+model Expedition {
+  id          Int    @id @default(autoincrement())
+  title       String @unique
+  description String
+  time        Int
+
+  @@map(name: "expeditions")
 }

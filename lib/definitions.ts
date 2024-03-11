@@ -11,4 +11,10 @@ export type Character = {
   class: string;
   level: number;
   experience: number;
+  activeExpedition: number | null;
+  expeditionStart: Date | null;
+};
+
+export type LayoutProps = {
+  children?: React.ReactNode;
 };

@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { Character } from "@/lib/definitions";
 import { database } from "@/lib/database";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 async function handler(req: NextRequest) {
-  if (req.method !== "POST") {
+  if (req.method !== "PATCH") {
     return new NextResponse(JSON.stringify({ message: "Method not allowed" }), {
       status: 405,
       headers: {
@@ -15,20 +14,15 @@ async function handler(req: NextRequest) {
   }
 
   try {
-    const { userId, name, characterClass } = await req.json();
+    const { characterId, expeditionId } = await req.json();
 
-    const character: Character = await database.character.create({
-      data: {
-        userId,
-        name,
-        class: characterClass,
+    const character = await database.character.update({
+      where: {
+        id: characterId,
       },
-      select: {
-        id: true,
-        name: true,
-        class: true,
-        level: true,
-        experience: true,
+      data: {
+        activeExpedition: expeditionId,
+        expeditionStart: new Date(Date.now()).toISOString(),
       },
     });
 
@@ -41,7 +35,7 @@ async function handler(req: NextRequest) {
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) {
       return new NextResponse(
-        JSON.stringify({ message: `Failed to create a character: ${error}` }),
+        JSON.stringify({ message: `Failed to update character expedition details: ${error}` }),
         {
           status: 400,
           headers: {
@@ -51,7 +45,7 @@ async function handler(req: NextRequest) {
       );
     }
 
-    console.error("Failed to create a character: ", error);
+    console.error("Failed to update character: ", error);
     return new NextResponse(JSON.stringify({ message: "Internal server error" }), {
       status: 500,
       headers: {
@@ -63,4 +57,4 @@ async function handler(req: NextRequest) {
   }
 }
 
-export { handler as POST };
+export { handler as PATCH };

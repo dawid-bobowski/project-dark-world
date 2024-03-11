@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { LayoutProps } from "@/lib/definitions";
 import { getSessionUser } from "@/lib/session";
 import { authOptions } from "@/lib/auth";
 import { database } from "@/lib/database";
@@ -7,11 +8,7 @@ import ErrorPage from "@/app/error/page";
 import TopBar from "./components/TopBar";
 import MainMenu from "./components/MainMenu";
 
-type DashboardLayoutProps = {
-  children?: React.ReactNode;
-};
-
-const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
+const DashboardLayout = async ({ children }: LayoutProps) => {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser || !sessionUser.email) {
