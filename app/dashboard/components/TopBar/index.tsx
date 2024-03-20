@@ -1,4 +1,4 @@
-import { Character } from "@/lib/definitions";
+import { Character } from "@prisma/client";
 import ProgressBars from "./ProgressBars";
 import LogOutButton from "./LogOutButton";
 

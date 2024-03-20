@@ -14,7 +14,7 @@ async function handler(req: NextRequest) {
   }
 
   try {
-    const { characterId, expeditionId } = await req.json();
+    const { characterId, expeditionId, expeditionTime } = await req.json();
 
     const character = await database.character.update({
       where: {
@@ -22,7 +22,7 @@ async function handler(req: NextRequest) {
       },
       data: {
         activeExpedition: expeditionId,
-        expeditionStart: new Date(Date.now()).toISOString(),
+        expeditionEnd: new Date(Date.now() + expeditionTime * 1000).toISOString(),
       },
     });
 

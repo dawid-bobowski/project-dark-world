@@ -1,17 +1,17 @@
 "use client";
 
+import { Expedition } from "@prisma/client";
+
 type BeginExpeditionButtonProps = {
   characterId: number;
-  expeditionId: number;
-  title: string;
+  expedition: Expedition;
   disabled: boolean;
   isActive: boolean;
 };
 
 const BeginExpeditionButton: React.FC<BeginExpeditionButtonProps> = ({
   characterId,
-  expeditionId,
-  title,
+  expedition,
   disabled,
   isActive,
 }) => {
@@ -23,14 +23,17 @@ const BeginExpeditionButton: React.FC<BeginExpeditionButtonProps> = ({
       },
       body: JSON.stringify({
         characterId,
-        expeditionId,
+        expeditionId: expedition.id,
+        expeditionTime: expedition.time,
       }),
     });
 
     if (!response?.ok) {
       return console.log("Character patch failed");
     }
-    console.log(response.body);
+
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
@@ -39,7 +42,7 @@ const BeginExpeditionButton: React.FC<BeginExpeditionButtonProps> = ({
       onClick={handleClick}
       disabled={disabled}
       hidden={isActive}
-      aria-label={title}
+      aria-label={expedition.title}
     >
       Begin
     </button>
