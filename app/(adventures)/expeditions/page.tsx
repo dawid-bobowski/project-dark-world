@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/auth";
 import { database } from "@/lib/database";
 
 import ErrorPage from "@/app/error/page";
-import ExpeditionCard from "./components/ExpeditionCard";
+import ExpeditionsList from "./components/ExpeditionsList";
 
 const ExpeditionsPage: React.FC = async () => {
   const sessionUser = await getSessionUser();
@@ -39,19 +39,9 @@ const ExpeditionsPage: React.FC = async () => {
     return <ErrorPage />;
   }
 
-  const activeExpedition = expeditions.find(
-    (expedition) => expedition.id === character.activeExpedition
-  );
-
   return (
     <div className="w-full p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {character.activeExpedition && activeExpedition ? (
-        <ExpeditionCard expedition={activeExpedition} character={character} />
-      ) : (
-        expeditions.map((expedition) => (
-          <ExpeditionCard key={expedition.id} expedition={expedition} character={character} />
-        ))
-      )}
+      <ExpeditionsList character={character} expeditions={expeditions} />
     </div>
   );
 };

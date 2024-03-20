@@ -39,6 +39,9 @@ model Expedition {
   title       String @unique
   description String
   time        Int
+  experience  Int
+  gold        Int
+
 
   @@map(name: "expeditions")
 }

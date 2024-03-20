@@ -1,12 +1,14 @@
 "use client";
 
-import { Expedition } from "@prisma/client";
+import { Character, Expedition } from "@prisma/client";
+import { Dispatch, SetStateAction } from "react";
 
 type BeginExpeditionButtonProps = {
   characterId: number;
   expedition: Expedition;
   disabled: boolean;
   isActive: boolean;
+  setCharacter: Dispatch<SetStateAction<Character>>;
 };
 
 const BeginExpeditionButton: React.FC<BeginExpeditionButtonProps> = ({
@@ -14,6 +16,7 @@ const BeginExpeditionButton: React.FC<BeginExpeditionButtonProps> = ({
   expedition,
   disabled,
   isActive,
+  setCharacter,
 }) => {
   const handleClick = async () => {
     const response = await fetch(`/api/characters/${characterId}/expedition`, {
@@ -33,7 +36,7 @@ const BeginExpeditionButton: React.FC<BeginExpeditionButtonProps> = ({
     }
 
     const data = await response.json();
-    console.log(data);
+    setCharacter(data);
   };
 
   return (
